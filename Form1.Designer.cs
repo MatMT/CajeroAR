@@ -94,7 +94,7 @@
             btnAgregarCola.Enabled = false;
             btnAgregarCola.Location = new Point(10, 100);
             btnAgregarCola.Name = "btnAgregarCola";
-            btnAgregarCola.Size = new Size(180, 30);
+            btnAgregarCola.Size = new Size(180, 32);
             btnAgregarCola.TabIndex = 4;
             btnAgregarCola.Text = "Agregar a Cola";
             btnAgregarCola.UseVisualStyleBackColor = true;
@@ -152,39 +152,51 @@
             // 
             // lblTiempoCajero3
             // 
-            lblTiempoCajero3.AutoSize = true;
+            lblTiempoCajero3.BackColor = Color.Red;
+            lblTiempoCajero3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            lblTiempoCajero3.ForeColor = SystemColors.ButtonHighlight;
             lblTiempoCajero3.Location = new Point(266, 39);
             lblTiempoCajero3.Name = "lblTiempoCajero3";
-            lblTiempoCajero3.Size = new Size(16, 15);
+            lblTiempoCajero3.Size = new Size(120, 15);
             lblTiempoCajero3.TabIndex = 8;
             lblTiempoCajero3.Text = "...";
+            lblTiempoCajero3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblTiempoCajero2
             // 
-            lblTiempoCajero2.AutoSize = true;
+            lblTiempoCajero2.BackColor = Color.Red;
+            lblTiempoCajero2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            lblTiempoCajero2.ForeColor = SystemColors.ButtonHighlight;
             lblTiempoCajero2.Location = new Point(140, 39);
             lblTiempoCajero2.Name = "lblTiempoCajero2";
-            lblTiempoCajero2.Size = new Size(16, 15);
+            lblTiempoCajero2.Size = new Size(120, 15);
             lblTiempoCajero2.TabIndex = 7;
             lblTiempoCajero2.Text = "...";
+            lblTiempoCajero2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblTiempoCajero1
             // 
-            lblTiempoCajero1.AutoSize = true;
+            lblTiempoCajero1.BackColor = Color.Red;
+            lblTiempoCajero1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            lblTiempoCajero1.ForeColor = SystemColors.ButtonHighlight;
             lblTiempoCajero1.Location = new Point(14, 39);
             lblTiempoCajero1.Name = "lblTiempoCajero1";
-            lblTiempoCajero1.Size = new Size(16, 15);
+            lblTiempoCajero1.Size = new Size(120, 15);
             lblTiempoCajero1.TabIndex = 6;
             lblTiempoCajero1.Text = "...";
+            lblTiempoCajero1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblCajero3
             // 
-            lblCajero3.AutoSize = true;
-            lblCajero3.Location = new Point(288, 22);
+            lblCajero3.BackColor = Color.Red;
+            lblCajero3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCajero3.ForeColor = SystemColors.ButtonHighlight;
+            lblCajero3.Location = new Point(266, 22);
             lblCajero3.Name = "lblCajero3";
-            lblCajero3.Size = new Size(50, 15);
+            lblCajero3.Size = new Size(120, 17);
             lblCajero3.TabIndex = 4;
             lblCajero3.Text = "Cajero 3";
+            lblCajero3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lbCajero3
             // 
@@ -197,12 +209,15 @@
             // 
             // lblCajero2
             // 
-            lblCajero2.AutoSize = true;
-            lblCajero2.Location = new Point(162, 22);
+            lblCajero2.BackColor = Color.Red;
+            lblCajero2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCajero2.ForeColor = SystemColors.ButtonHighlight;
+            lblCajero2.Location = new Point(140, 22);
             lblCajero2.Name = "lblCajero2";
-            lblCajero2.Size = new Size(50, 15);
+            lblCajero2.Size = new Size(120, 17);
             lblCajero2.TabIndex = 2;
             lblCajero2.Text = "Cajero 2";
+            lblCajero2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lbCajero2
             // 
@@ -215,12 +230,15 @@
             // 
             // lblCajero1
             // 
-            lblCajero1.AutoSize = true;
-            lblCajero1.Location = new Point(36, 22);
+            lblCajero1.BackColor = Color.Red;
+            lblCajero1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCajero1.ForeColor = SystemColors.ButtonHighlight;
+            lblCajero1.Location = new Point(14, 22);
             lblCajero1.Name = "lblCajero1";
-            lblCajero1.Size = new Size(50, 15);
+            lblCajero1.Size = new Size(120, 17);
             lblCajero1.TabIndex = 0;
             lblCajero1.Text = "Cajero 1";
+            lblCajero1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lbCajero1
             // 
@@ -264,7 +282,6 @@
             gbIngresoCliente.ResumeLayout(false);
             gbIngresoCliente.PerformLayout();
             gbCajeros.ResumeLayout(false);
-            gbCajeros.PerformLayout();
             gbClientesAtendidos.ResumeLayout(false);
             ResumeLayout(false);
         }

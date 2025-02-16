@@ -22,17 +22,19 @@ namespace CajeroAR
         private ListBox lstVistaCola;
         private ListBox lstColaSalida;
 
-        // Propiedades añadidas para tiempo visual
-        private Label lblTiempoAtencion;
-        private int tiempoTranscurrido;
+        // Propiedades adicionales
+        private Label lblNombreCajero; // etiqueta para manipular la apariencia del encabezado del cajero
+        private Label lblTiempoAtencion; // etiqueta para mostrar el tiempo de atención de cada cliente
+        private int tiempoTranscurrido; // indicador del tiempo de atención que ha transcurrido para el cliente
 
-        public Cajero(string nom, string apell, ListBox VistaCola, ListBox ClientesServidos, Label LblTiempo)
+        public Cajero(string nom, string apell, ListBox VistaCola, ListBox ClientesServidos, Label LblTiempo, Label LblNombre)
         {
             this.nom = nom;
             this.apell = apell;
             lstVistaCola = VistaCola;
             lstColaSalida = ClientesServidos;
             lblTiempoAtencion = LblTiempo;
+            lblNombreCajero = LblNombre;
 
             // Inicializar objetos auxiliares
             colaAtencion = new ColaCliente();
@@ -78,6 +80,10 @@ namespace CajeroAR
 
                 // Iniciar el timer con intervalo de 1 segundo
                 relojAtencion.Start();
+
+                // Cambiar colores a naranja cuando está atendiendo
+                lblNombreCajero.BackColor = Color.Orange;
+                lblTiempoAtencion.BackColor = Color.Orange;
             }
         }
 
@@ -111,6 +117,8 @@ namespace CajeroAR
                 lstColaSalida.Items.Add(clienteActual.NombreCompleto());
 
                 // El cajero ahora se encuentra disponible para atender
+                lblNombreCajero.BackColor = Color.Green;
+                lblTiempoAtencion.BackColor = Color.Green;
                 estado = EstadoCajero.disponible;
                 lblTiempoAtencion.Text = "Esperando cliente...";
                 clienteActual = null;

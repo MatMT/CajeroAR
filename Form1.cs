@@ -14,9 +14,9 @@ namespace CajeroAR
         private void btnAbrirSucursal_Click(object sender, EventArgs e)
         {
             // Inicializar a los cajeros
-            cajeroME = new Cajero("Mateo", "Elias", lbCajero1, lbClientesAtendidos, lblTiempoCajero1);
-            cajeroJM = new Cajero("Javier", "Mejia", lbCajero2, lbClientesAtendidos, lblTiempoCajero2);
-            cajeroMC = new Cajero("Martin", "Carbajal", lbCajero3, lbClientesAtendidos, lblTiempoCajero3);
+            cajeroME = new Cajero("Mateo", "Elias", lbCajero1, lbClientesAtendidos, lblTiempoCajero1, lblCajero1);
+            cajeroJM = new Cajero("Javier", "Mejia", lbCajero2, lbClientesAtendidos, lblTiempoCajero2, lblCajero2);
+            cajeroMC = new Cajero("Martin", "Carbajal", lbCajero3, lbClientesAtendidos, lblTiempoCajero3, lblCajero3);
 
             lblCajero1.Text = cajeroME.NombreCompleto();
             lblCajero2.Text = cajeroJM.NombreCompleto();
@@ -24,6 +24,8 @@ namespace CajeroAR
 
             btnAbrirSucursal.Enabled = false;
             btnAgregarCola.Enabled = true;
+
+            lblCajero1.BackColor = lblCajero2.BackColor = lblCajero3.BackColor = lblTiempoCajero1.BackColor = lblTiempoCajero2.BackColor = lblTiempoCajero3.BackColor = Color.Green;
         }
 
         private void btnAgregarCola_Click(object sender, EventArgs e)
