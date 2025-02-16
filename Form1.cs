@@ -23,7 +23,7 @@ namespace CajeroAR
             lblCajero3.Text = cajeroMC.NombreCompleto();
 
             btnAbrirSucursal.Enabled = false;
-            btnAgregarCola.Enabled = true;
+            btnAgregarCola.Enabled = btnDemo.Enabled = true;
 
             lblCajero1.BackColor = lblCajero2.BackColor = lblCajero3.BackColor = lblTiempoCajero1.BackColor = lblTiempoCajero2.BackColor = lblTiempoCajero3.BackColor = Color.Green;
         }
@@ -47,6 +47,9 @@ namespace CajeroAR
             txtNombre.Clear();
             txtApellido.Clear();
             txtNombre.Focus();
+
+            // Desactivar opción de Demostración Ágil
+            btnDemo.Visible = false;
         }
 
         private Cajero ObtenerCajeroMenosClientes()
@@ -54,6 +57,104 @@ namespace CajeroAR
             return new[] { cajeroME, cajeroJM, cajeroMC }
                 .OrderBy(c => c.contarClientesColaAtencion())
                 .First();
+        }
+
+        private void btnDemo_Click(object sender, EventArgs e)
+        {
+            // Mostrar mensaje de confirmación
+            DialogResult respuesta = MessageBox.Show(
+                "¿Desea iniciar la demostración? Se agregarán clientes de prueba.",
+                "Confirmar Demostración",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question
+            );
+
+            if (respuesta == DialogResult.Cancel) return;
+
+            // Si el usuario confirma, procedemos con la demo
+            if (respuesta == DialogResult.OK)
+            {
+                // Ocultar el botón de demo
+                btnDemo.Visible = false;
+
+                // Crear y agregar los 15 clientes
+                Cliente nuevoCliente;
+
+                nuevoCliente = new Cliente("Eleazar", "Amaya");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Pedro", "Infante");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Luis", "Miguel");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Marcelo", "Menjívar");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Daniela", "Martínez");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Hazel", "Moreno");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Víctor", "García");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Maggie", "Murillo");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Ronald", "Nolasco");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Brandon", "Zepeda");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("María", "Gutierrez");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Diana", "Flores");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Harold", "Merino");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Flor", "Salazar");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+
+                nuevoCliente = new Cliente("Eleonora", "Marroquín");
+                ObtenerCajeroMenosClientes().EncolarCliente(nuevoCliente);
+                System.Threading.Thread.Sleep(100);
+                Application.DoEvents();
+            }
         }
     }
 }

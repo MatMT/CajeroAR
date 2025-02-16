@@ -60,6 +60,7 @@
             lbCajero1 = new ListBox();
             gbClientesAtendidos = new GroupBox();
             lbClientesAtendidos = new ListBox();
+            btnDemo = new Button();
             gbIngresoCliente.SuspendLayout();
             gbCajeros.SuspendLayout();
             gbClientesAtendidos.SuspendLayout();
@@ -268,11 +269,26 @@
             lbClientesAtendidos.Size = new Size(120, 319);
             lbClientesAtendidos.TabIndex = 0;
             // 
+            // btnDemo
+            // 
+            btnDemo.BackColor = SystemColors.ScrollBar;
+            btnDemo.Enabled = false;
+            btnDemo.FlatStyle = FlatStyle.Flat;
+            btnDemo.ForeColor = SystemColors.ControlText;
+            btnDemo.Location = new Point(636, 12);
+            btnDemo.Name = "btnDemo";
+            btnDemo.Size = new Size(144, 30);
+            btnDemo.TabIndex = 4;
+            btnDemo.Text = "Demostración ágil";
+            btnDemo.UseVisualStyleBackColor = false;
+            btnDemo.Click += btnDemo_Click;
+            // 
             // CajeroAR
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnDemo);
             Controls.Add(btnAbrirSucursal);
             Controls.Add(gbIngresoCliente);
             Controls.Add(gbCajeros);
@@ -294,5 +310,6 @@
         private Label lblTiempoCajero1;
         private Label lblTiempoCajero3;
         private Label lblTiempoCajero2;
+        private Button btnDemo;
     }
 }
