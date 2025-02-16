@@ -21,26 +21,10 @@ namespace CajeroAR
         private Cliente? clienteActual;
         private ListBox lstVistaCola;
         private ListBox lstColaSalida;
+
         // Propiedades añadidas para tiempo visual
         private Label lblTiempoAtencion;
         private int tiempoTranscurrido;
-
-        public Cajero(string nom, string apell, ListBox VistaCola, ListBox ClientesServidos)
-        {
-            this.nom = nom;
-            this.apell = apell;
-            lstVistaCola = VistaCola;
-            lstColaSalida = ClientesServidos;
-
-            // Inicializar objetos auxiliares
-            colaAtencion = new ColaCliente();
-            numAleatorio = new Random();
-            relojAtencion = new System.Windows.Forms.Timer();
-
-            // Relacionar el evento Tick con Finalizar Cliente
-            relojAtencion.Tick += new EventHandler(FinalizarCliente);
-
-        }
 
         public Cajero(string nom, string apell, ListBox VistaCola, ListBox ClientesServidos, Label LblTiempo)
         {
@@ -54,8 +38,8 @@ namespace CajeroAR
             colaAtencion = new ColaCliente();
             numAleatorio = new Random();
             relojAtencion = new System.Windows.Forms.Timer();
-            relojAtencion.Interval = 1000;  
-            relojAtencion.Start();  
+            relojAtencion.Interval = 1000;
+            relojAtencion.Start();
 
             // Relacionar el evento Tick con Finalizar Cliente
             relojAtencion.Tick += new EventHandler(ActualizarTiempo);
@@ -80,16 +64,19 @@ namespace CajeroAR
         {
             // Si la cola esta vacia y el estado del cajero es diferente a disponible
             // if(colaAtencion.EstaVacia() || estado == EstadoCajero.disponible)
-            if(estado == EstadoCajero.disponible) {
+            if(estado == EstadoCajero.disponible && !colaAtencion.EstaVacia()) {
                 // El cajero ahora esta atendiendo a un cliente
                 estado = EstadoCajero.atendiendo;
                 clienteActual = colaAtencion.ClienteInc();
 
                 // Se genera un nuevo tiempo de atención
                 tiempoAtencion = GenerarSemilla();
+                tiempoTranscurrido = 0;
 
-                // Configurar e iniciar el nuevo timer
-                relojAtencion.Interval = tiempoAtencion;
+                // Mostrar tiempo inicial
+                lblTiempoAtencion.Text = $"Tiempo restante: {tiempoAtencion / 1000}s";
+
+                // Iniciar el timer con intervalo de 1 segundo
                 relojAtencion.Start();
             }
         }
@@ -110,53 +97,71 @@ namespace CajeroAR
                 return;
             }
 
-            // Detener el timer
-            relojAtencion.Stop();
-
-            // El cliente es atendido y este sale de la cola de atención
-            clienteActual = colaAtencion.RemoverCli();
-            colaAtencion.AnotarClientes(lstVistaCola);
-
-            // Mover cliente a la lista de atendidos
-            lstColaSalida.Items.Add(clienteActual.NombreCompleto());
-
-            // El cajero ahora se encuentra disponible para atender
-            estado = EstadoCajero.disponible;
-            lblTiempoAtencion.Text = "Esperando cliente...";
-            clienteActual = null;
-
-            // Si la cola no esta vacia y hay más por atender
-            if (!colaAtencion.EstaVacia())
+            // Verificar si se alcanzó el tiempo de atención
+            if (tiempoTranscurrido >= tiempoAtencion)
             {
-                AtenderCliente();
+                // Detener el timer
+                relojAtencion.Stop();
+
+                // El cliente es atendido y este sale de la cola de atención
+                clienteActual = colaAtencion.RemoverCli();
+                colaAtencion.AnotarClientes(lstVistaCola);
+
+                // Mover cliente a la lista de atendidos
+                lstColaSalida.Items.Add(clienteActual.NombreCompleto());
+
+                // El cajero ahora se encuentra disponible para atender
+                estado = EstadoCajero.disponible;
+                lblTiempoAtencion.Text = "Esperando cliente...";
+                clienteActual = null;
+                tiempoTranscurrido = 0;
+
+                // Si la cola no esta vacia y hay más por atender
+                if (!colaAtencion.EstaVacia())
+                {
+                    AtenderCliente();
+                }
             }
         }
 
-        // Métodos auxiliares añadidos
+        // Métodos auxiliares
 
+        /*
+         * Método adicional para mostrar el tiempo de atención restante para cada cliente,
+         * este método se encarga de actualizar el contador de manera visual para saber cuánto
+         * tiempo falta para que el próximo cliente sea atendido
+         */
         private void ActualizarTiempo(object sender, EventArgs e)
         {
-            tiempoTranscurrido++;
-            lblTiempoAtencion.Text = $"Tiempo: {tiempoTranscurrido} s";
-
-            return;
+            // Verificar que SÍ se está atendiendo a un cliente
             if (estado == EstadoCajero.atendiendo && clienteActual != null)
             {
-                tiempoTranscurrido += 1000; 
-                int segundosRestantes = (tiempoAtencion - tiempoTranscurrido) / 1000;
-                lblTiempoAtencion.Text = $"Tiempo restante: {segundosRestantes} segundos";
+                tiempoTranscurrido += 1000; // Incrementar el contador de tiempo transcurrido en 1s para coincidir con el Interval del timer
+                int segundosRestantes = (tiempoAtencion - tiempoTranscurrido) / 1000; // Calcular segundos restantes dividiendo entre 1000 para convertir de milisegundos a segundos
+
+                // Solo actualizar el texto si quedan segundos positivos
+                if (segundosRestantes >= 0)
+                {
+                    lblTiempoAtencion.Text = $"Tiempo restante: {segundosRestantes}s";
+                }
             }
-            else
+            else // Si no, indicar que se está esperando a atender un cliente
             {
-                lblTiempoAtencion.Text = "Esperando clientes...";
+                lblTiempoAtencion.Text = "Esperando cliente...";
             }
         }
 
+        /*
+         * Método auxiliar para conocer el total de clientes en la cola
+         */
         public int contarClientesColaAtencion()
         {
             return colaAtencion.TotalClientes();
         }
 
+        /*
+         * Método auxiliar para concatenar el nombre y apellido de los clientes
+         */
         public string NombreCompleto()
         {
             return $"{this.nom} {this.apell}";
