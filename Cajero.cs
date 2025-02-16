@@ -54,7 +54,7 @@ namespace CajeroAR
         {
             // Agregar el cliente a la cola del cajero
             colaAtencion.AgregarCli(NueCli);
-            colaAtencion.AnotarClientes(lstVistaCola);
+            colaAtencion.AnotarClientesEn(lstVistaCola);
 
             if(estado == EstadoCajero.disponible)
             {
@@ -92,8 +92,8 @@ namespace CajeroAR
             if (numAleatorio == null)
                 throw new ArgumentNullException(nameof(numAleatorio), "El generador de números aleatorios no ha sido inicializado.");
 
-            // (10000 a 50001 ms)
-            return numAleatorio.Next(10000, 15001);
+            // Tiempo aleatorio para demostración 10s-50s (10000 a 50000 ms)
+            return numAleatorio.Next(10000, 50000);
         }
 
         private void FinalizarCliente(object sender,  EventArgs e)
@@ -111,7 +111,7 @@ namespace CajeroAR
 
                 // El cliente es atendido y este sale de la cola de atención
                 clienteActual = colaAtencion.RemoverCli();
-                colaAtencion.AnotarClientes(lstVistaCola);
+                colaAtencion.AnotarClientesEn(lstVistaCola);
 
                 // Mover cliente a la lista de atendidos
                 lstColaSalida.Items.Add(clienteActual.NombreCompleto());
