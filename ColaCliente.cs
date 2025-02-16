@@ -69,7 +69,7 @@ namespace CajeroAR
         }
 
         // Método para 
-        public void AnotarClientes(ListBox VistaClientes)
+        public void AnotarClientesEn(ListBox VistaClientes)
         {
             // Limpiar la lista para volver a imprimir
             VistaClientes.Items.Clear();
