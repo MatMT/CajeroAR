@@ -1,22 +1,24 @@
-﻿using System;
+﻿/*
+ * DESARROLLO DE HABILIDADES - GUÍA 4 PED104G08L
+ * 
+ * Oscar Mateo Elías López      - EL232710
+ * Javier Enrique Mejía Flores  - MF232724
+ * 
+ */
+
+using System;
 
 namespace CajeroAR
 {
     public class ColaCliente
     {
         // declaración de atributos para la clase ColaCliente
-        private Cliente clienteInic; // determina el primer cliente en la cola
-        private Cliente clienteFin; // determina el último cliente en la cola
-        private int totalClientes; // controla el número de clientes en la cola
+        private Cliente clienteInic = null; // determina el primer cliente en la cola
+        private Cliente clienteFin = null; // determina el último cliente en la cola
+        private int totalClientes = 0; // controla el número de clientes en la cola
 
         // Constructor para la clase (sin parámetros para inicializar la cola)
-        public ColaCliente()
-        {
-            // definimos todos sus atributos como vacíos porque aún no hay clientes
-            this.clienteInic = null;
-            this.clienteFin = null;
-            this.totalClientes = 0;
-        }
+        public ColaCliente() { }
 
         // Método para obtener al primer cliente en cola
         public Cliente ClienteInc()

@@ -1,4 +1,12 @@
-﻿namespace CajeroAR
+﻿/*
+ * DESARROLLO DE HABILIDADES - GUÍA 4 PED104G08L
+ * 
+ * Oscar Mateo Elías López      - EL232710
+ * Javier Enrique Mejía Flores  - MF232724
+ * 
+ */
+
+namespace CajeroAR
 {
     partial class CajeroAR
     {
